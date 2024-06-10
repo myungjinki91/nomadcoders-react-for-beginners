@@ -547,3 +547,54 @@ ReactDOM.render(<App />, root);
 ```
 
 꼭 사용할 필요는 없지만, Component가 1000개라면 사용할 법 합니다. 그리고 React의 동작 과정을 더 이해할 수 있는 기능입니다.
+
+## 4.2 Prop Types (08:14)
+
+팀원이 Props를 잘못 전달하면 어떻게 하죠? 이를 위해 React팀에서 prop-types란 것을 만들었습니다. 
+
+```jsx
+function Btn({ text, fontSize = 12 }) {
+  console.log(`${text} rendered`);
+  return (
+    <button
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+        fontSize,
+      }}
+    >
+      {text}
+    </button>
+  );
+}
+Btn.propTypes = {
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number,
+};
+function App() {
+  const [value, setValue] = React.useState("Save Changes");
+  const changeValue = () => setValue("Revert Changes");
+  return (
+    <div>
+      <Btn text={value} fontSize={18} />
+      <Btn text="Confirm" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+```jsx
+Btn.propTypes = {
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number,
+};
+```
+
+더 자세한 내용은 아래 링크를 참고하시면 됩니다.
+
+https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
