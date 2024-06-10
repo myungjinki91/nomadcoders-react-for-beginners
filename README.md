@@ -186,3 +186,35 @@ function App() {
 }
 ReactDOM.render(<App />, root);
 ```
+
+## 3.2 setState part Two
+
+modifier를 어떻게 사용하는지 봅시다.
+
+```jsx
+const root = document.getElementById("root");
+
+function App() {
+  let [counter, modifier] = React.useState(0);
+  const onClick = () => {
+    counter = counter + 1;
+  };
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button onClick={onClick}>Click me</button>
+    </div>
+  );
+}
+ReactDOM.render(<App />, root);
+```
+
+```jsx
+const onClick = () => {
+  counter = counter + 1;
+};
+
+const onClick = () => {
+  modifier(counter + 1);
+};
+```
