@@ -297,3 +297,7 @@ function App() {
 const root = document.getElementById("root");
 ReactDOM.render(<App />, root);
 ```
+
+## 3.6 State Practice part One
+
+minutes에 입력할 때마다 hours에 표시되도록 바꾸어봅시다. 그리고 Reset도 만들어봅시다.
