@@ -598,3 +598,17 @@ Btn.propTypes = {
 더 자세한 내용은 아래 링크를 참고하시면 됩니다.
 
 https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
+
+# 5. CREATE REACT APP
+
+## 5.0 Introduction
+
+ReactJS팀은 React App을 빠르게 만들기 위한 패키지도 개발했습니다. Create React App이란 패키지는 CRA라고도 불리는데, https://www.github.com/facebook/create-react-app에서 확인할 수 있고 아래 명령으로 시작할 수 있습니다.
+
+```bash
+npx create-react-app react-for-beginners
+cd react-for-beginners
+npm start
+```
+
+CRA의 장점 중 하나는, 수정이 실시간으로 반영된다는 것입니다.
