@@ -107,3 +107,49 @@ ReactJS에서 제시하는 새로운 문법입니다. 다만 JSX를 ReactJS로 �
 </html>
 
 ```
+
+## 2.6 JSX part Two
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    const Title = () => (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello I'm a title
+      </h3>
+    );
+    const Button = () => (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("im clicked")}
+      >
+        Click me
+      </button>
+    );
+
+    const container = (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    ReactDOM.render(container, root);
+  </script>
+</html>
+
+```
+
+주의해야 할 점은 React Element는 Uppercase로 작성해야 합니다. lowercase로 작성하면 Bable이 HTML element라고 이해합니다.
+
+```jsx
+<button /> /* HTML */
+<Button /> /* JSX */
+```
