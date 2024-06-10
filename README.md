@@ -218,3 +218,7 @@ const onClick = () => {
   modifier(counter + 1);
 };
 ```
+
+## 3.3 Recap
+
+HTML Element 생성 → JavaScript로 Element 선택 → addEventListener()로 등록 → Rerendering의 과정을 ReactJS는 더 간편하게 만들어줍니다.
