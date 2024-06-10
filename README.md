@@ -71,3 +71,39 @@ ReactJS에서 on + event는 addEventListener로 알아서 적용해줍니다.
 React.createElement()
 ReactDOM.render(root, container)
 ```
+
+## 2.5 JSX
+
+ReactJS에서 제시하는 새로운 문법입니다. 다만 JSX를 ReactJS로 변환하려면 Babel이 필요합니다.
+
+```jsx
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    const Title = (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello I'm a title
+      </h3>
+    );
+    const Button = (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("im clicked")}
+      >
+        Click me
+      </button>
+    );
+
+    const container = React.createElement("div", null, [Title, Button]);
+    ReactDOM.render(container, root);
+  </script>
+</html>
+
+```
