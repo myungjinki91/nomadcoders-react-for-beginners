@@ -35,3 +35,19 @@ button.addEventListener("onclick", () => console.log("hi"))
 ```
 
 ReactJS를 만든 사람들은 버튼을 만들고 이벤트를 등록하는 과정을 줄였습니다. ReactJS는 오직 Interactive를 위한 것입니다.
+
+## 2.1 Before React
+
+ReactJS를 사용하기 위해서는 아래 Script를 불러와야 합니다.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+</body>
+
+</html>
+```
