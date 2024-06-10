@@ -301,3 +301,57 @@ ReactDOM.render(<App />, root);
 ## 3.6 State Practice part One
 
 minutes에 입력할 때마다 hours에 표시되도록 바꾸어봅시다. 그리고 Reset도 만들어봅시다.
+
+## 3.7 State Practice part Two
+
+- flip
+- disabled
+- ternary operator
+
+```jsx
+function App() {
+  const [amount, setAmount] = React.useState(0);
+  const [flipped, setFlipped] = React.useState(false);
+  const onChange = () => {
+    setAmount(event.target.value);
+  };
+  const reset = () => {
+    setAmount(0);
+  };
+  const onFlip = () => {
+    setFlipped((current) => !current);
+    reset();
+  };
+  return (
+    <div>
+      <h1 className="hi">Super Converter</h1>
+      <div>
+        <label htmlFor="minutes">Minutes</label>
+        <input
+          value={flipped ? amount * 60 : amount}
+          id="minutes"
+          placeholder="Minutes"
+          type="number"
+          onChange={onChange}
+          disabled={flipped}
+        />
+      </div>
+      <div>
+        <label htmlFor="hours">Hours</label>
+        <input
+          value={flipped ? amount : Math.round(amount / 60)}
+          id="hours"
+          placeholder="Hours"
+          type="number"
+          onChange={onChange}
+          disabled={!flipped}
+        />
+      </div>
+      <button onClick={reset}>Reset</button>
+      <button onClick={onFlip}>Flip</button>
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
