@@ -51,3 +51,10 @@ ReactJS를 사용하기 위해서는 아래 Script를 불러와야 합니다.
 
 </html>
 ```
+## 2.2 Our First React Element
+
+우선 ReactJS로 어렵게 Counter를 만들어 봅시다. 우선 어렵게 사용하면서 ReactJS의 본질을 이해해봅시다.
+
+react-dom은 모든 React element을 HTML안에 넣을 수 있게 해주는 라이브러리입니다.
+
+VanillaJS는 HTML을 만들고, 선택한 뒤, 함수를 만들고, 이벤트를 등록합니다. 반면 ReactJS는 JavaScript에서 시작해서 HTML이 만들어집니다.
