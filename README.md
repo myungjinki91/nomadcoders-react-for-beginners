@@ -153,3 +153,36 @@ ReactJS에서 제시하는 새로운 문법입니다. 다만 JSX를 ReactJS로 �
 ## 3.0 Understanding State
 
 VanillaJS와 다르게, ReactJS는 필요한 것만 Rerendering합니다.
+
+## 3.1 setState part One
+
+전에 봤듯이 처음에 Rendering하고 Rerendering하는 작업이 반복됩니다. 
+
+Rendering부분과 Data를 다루는 부분을 분리합니다.
+
+```jsx
+const data = React.useState();
+```
+
+useState()는 Element가 2개인 Array를 Return합니다.
+
+```jsx
+console.log(data) // [undefined, ƒ]
+```
+
+JavaScript 문법인 destructurize을 이용하면 더 세련되게 초기값을 가져올 수 있습니다.
+
+```jsx
+const root = document.getElementById("root");
+
+function App() {
+  const [counter, modifier] = React.useState(0);
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button>Click me</button>
+    </div>
+  );
+}
+ReactDOM.render(<App />, root);
+```
