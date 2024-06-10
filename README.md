@@ -64,3 +64,10 @@ VanillaJS는 HTML을 만들고, 선택한 뒤, 함수를 만들고, 이벤트를
 ReactJS 팀은 Interactive한 웹페이지는 모두 event를 감지하는 일이라는 것을 알았습니다.
 
 ReactJS에서 on + event는 addEventListener로 알아서 적용해줍니다.
+
+## 2.4 Recap
+
+```jsx
+React.createElement()
+ReactDOM.render(root, container)
+```
