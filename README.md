@@ -357,3 +357,8 @@ ReactDOM.render(<App />, root);
 ```
 
 ## 3.8 Recap
+
+## 3.9 Final Practice and Recap
+
+- Add KM to Miles
+- <hr />
