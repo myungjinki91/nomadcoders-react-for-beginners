@@ -222,3 +222,19 @@ const onClick = () => {
 ## 3.3 Recap
 
 HTML Element 생성 → JavaScript로 Element 선택 → addEventListener()로 등록 → Rerendering의 과정을 ReactJS는 더 간편하게 만들어줍니다.
+
+## 3.4 State Function
+
+modifier로 state를 수정할 때는 두 가지 경우가 있을겁니다.
+
+1. 특정 값으로 수정
+2. 이전 값을 기준으로 수정
+
+이전 값을 수정할 때 아래와 같이 하는 것이 더 안전하다고 합니다.
+
+```jsx
+const onClick = () => {
+  // setCounter(counter + 1);
+  setCounter((current) => current + 1);
+};
+```
