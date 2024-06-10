@@ -21,3 +21,17 @@
 ## 1.3 Requirements
 
 JavaScript 알고 강의 들으셔야 합니다.
+
+# 2. THE BASICS OF REACT
+
+## 2.0 Introduction
+
+기술이 왜 생겼는지 이해하고 시작해야 합니다. JavaScript와 ReactJS를 비교해볼겁니다. ReactJS를 팔아보겠습니다. ReactJS는 UI를 Interactive하게 만듭니다. 매우 쉽게 말이죠!
+
+```jsx
+button = document.getElementById("btn")
+button = document.querySelector(".btn")
+button.addEventListener("onclick", () => console.log("hi"))
+```
+
+ReactJS를 만든 사람들은 버튼을 만들고 이벤트를 등록하는 과정을 줄였습니다. ReactJS는 오직 Interactive를 위한 것입니다.
