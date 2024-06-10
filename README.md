@@ -238,3 +238,62 @@ const onClick = () => {
   setCounter((current) => current + 1);
 };
 ```
+
+## 3.5 Inputs and State
+
+```jsx
+function App() {
+  return (
+    <div>
+      <h1>Super Converter</h1>
+      <label for="minutes">Minutes</label>
+      <input id="minutes" placeholder="Minutes" type="number" />
+      <label for="hours">Hours</label>
+      <input id="hours" placeholder="Hours" type="number" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+위 코드에서 문제점은, HTML의 label element는 for attributes가 있지만, JavaScript는 for를 keyword로 사용하고 있기 때문에 문제가 발생할 여지가 충분히 있습니다. import하는 package를 development로 변경하면 Browser console에서 Error를 확인할 수 있습니다.
+
+```html
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+```
+
+JSX에서는 살짝 다르게 사용해야 합니다.
+
+- for - htmlFor
+- class - className
+
+onChange attribute는 변화가 일어날 때 이벤트 입니다.
+
+```jsx
+function App() {
+  const [minutes, setMinutes] = React.useState();
+  const onChange = (event) => {
+    setMinutes(event.target.value);
+  };
+  return (
+    <div>
+      <h1 className="hi">Super Converter</h1>
+      <label htmlFor="minutes">Minutes</label>
+      <input
+        value={minutes}
+        id="minutes"
+        placeholder="Minutes"
+        type="number"
+        onChange={onChange}
+      />
+      <h4>You want to convert {minutes}</h4>
+      <label htmlFor="hours">Hours</label>
+      <input id="hours" placeholder="Hours" type="number" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
