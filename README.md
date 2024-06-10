@@ -362,3 +362,115 @@ ReactDOM.render(<App />, root);
 
 - Add KM to Miles
 - <hr />
+
+# 4. PROPS
+
+## 4.0 Props (15:24)
+
+프로그램이 커지면 자연스럽게 React Component는 계층을 가지게 됩니다. Parents Component의 데이터를 Child Component에 보내는 방법은 props를 사용하는 것입니다.
+
+회사에서 제품을 만들 땐 버튼 모양이 모두 같습니다. 따라서 Component를 재사용 해야 합니다. 그러나 아직 React Component를 재사용하는 법을 배우지 않았으니, 아는 대로 만들어봅시다.
+
+```jsx
+function SaveBtn() {
+  return (
+    <button
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+      }}
+    >
+      Save Changes
+    </button>
+  );
+}
+function ConfirmBtn() {
+  return (
+    <button
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+      }}
+    >
+      Confirm
+    </button>
+  );
+}
+function App() {
+  return (
+    <div>
+      <SaveBtn />
+      <ConfirmBtn />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+위 코드는 중복이면서 못생기지 않았나요?
+
+props는 OOP의 Class에서 Constructor parameter와 비슷합니다. 이게 무슨말이냐? OOP에서는 Class를 정의하고 Instance를 생성할 때, Argument를 전달하기도 합니다.
+
+```jsx
+function Btn(props) {
+  return (
+    <button
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+      }}
+    >
+      {props.banana}
+    </button>
+  );
+}
+function App() {
+  return (
+    <div>
+      <Btn banana="Save Changes" />
+      <Btn banana="Confirm" />
+    </div>
+  );
+}
+```
+
+JavaScript Destructuring을 주로 이용하고 props는 사용하지 않습니다.
+
+```
+function Btn({ banana, big }) {
+  return (
+    <button
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+        fontSize: big ? 18 : 16,
+      }}
+    >
+      {banana}
+    </button>
+  );
+}
+function App() {
+  return (
+    <div>
+      <Btn banana="Save Changes" big={true} />
+      <Btn banana="Confirm" big={false} />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
