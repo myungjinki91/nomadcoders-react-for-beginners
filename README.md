@@ -58,3 +58,9 @@ ReactJS를 사용하기 위해서는 아래 Script를 불러와야 합니다.
 react-dom은 모든 React element을 HTML안에 넣을 수 있게 해주는 라이브러리입니다.
 
 VanillaJS는 HTML을 만들고, 선택한 뒤, 함수를 만들고, 이벤트를 등록합니다. 반면 ReactJS는 JavaScript에서 시작해서 HTML이 만들어집니다.
+
+## 2.3 Events in React
+
+ReactJS 팀은 Interactive한 웹페이지는 모두 event를 감지하는 일이라는 것을 알았습니다.
+
+ReactJS에서 on + event는 addEventListener로 알아서 적용해줍니다.
