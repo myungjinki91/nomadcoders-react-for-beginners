@@ -153,3 +153,9 @@ ReactJS에서 제시하는 새로운 문법입니다. 다만 JSX를 ReactJS로 �
 <button /> /* HTML */
 <Button /> /* JSX */
 ```
+
+# 3. STATE
+
+## 3.0 Understanding State
+
+VanillaJS와 다르게, ReactJS는 필요한 것만 Rerendering합니다.
