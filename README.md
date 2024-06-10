@@ -612,3 +612,38 @@ npm start
 ```
 
 CRA의 장점 중 하나는, 수정이 실시간으로 반영된다는 것입니다.
+
+## 5.1 Tour of CRA
+
+CRA의 장점 2: 개발하면서 발생하는 Warning도 알려줍니다. CRA Server는 저장할 때마다 App을 새로 Compile하기 때문입니다.
+
+CRA로 장점 3: 작업하면 VSCode와 궁합이 좋다는 것입니다.
+
+CRA의 장점 4: 분할하고 정복하기 쉽습니다. CSS를 적용할 때, 한 파일을 index.js에 import하면 전역적으로 적용되지만 그렇게 되면 CSS 파일이 엄청나게 커져버릴 수 있다는 단점이 있습니다. 그래서 Component마다 CSS를 적용하는 것이 선호됩니다. 그렇게 되면 CSS는 HTML의 style Attribute로 적용됩니다.
+
+CRA의 장점 5: CRA는 CSS Modules를 지원합니다. 위 분할 정복에 이어서 아래처럼 CSS를 적용할 수 있습니다.
+
+```css
+.btn {
+    color: white;
+    background-color: tomato;
+}
+```
+
+```jsx
+import PropTypes from "prop-types";
+import styles from "./Button.module.css";
+
+function Button({ text }) {
+  return <button className={styles.btn}>{text}</button>;
+}
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+export default Button;
+
+```
+
+주의할 점은 파일 이름이 abc.module.css와 같이 .module.css이여야 합니다.
