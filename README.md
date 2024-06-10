@@ -474,3 +474,76 @@ function App() {
 const root = document.getElementById("root");
 ReactDOM.render(<App />, root);
 ```
+
+## 4.1 Memo (12:33)
+
+State가 변하면 Component가 Rerendering됩니다. 그런데 단점은 State를 Props로 전달할 때, 전달받는 Component 모두 Rerendering되는게 문제입니다. 
+
+```jsx
+function Btn({ text, onClick }) {
+  console.log(`${text} rendered`);
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+      }}
+    >
+      {text}
+    </button>
+  );
+}
+function App() {
+  const [value, setValue] = React.useState("Save Changes");
+  const changeValue = () => setValue("Revert Changes");
+  return (
+    <div>
+      <Btn text={value} onClick={changeValue} />
+      <Btn text="Confirm" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+Props가 바뀐 Component만 Rerendering을 하고 싶다면, React.memo()를 사용하면 됩니다. memorize의 줄임말입니다.
+
+```jsx
+function Btn({ text, onClick }) {
+  console.log(`${text} rendered`);
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        backgroundColor: "tomato",
+        color: "white",
+        padding: "10px 20px",
+        border: 0,
+        borderRadius: 10,
+      }}
+    >
+      {text}
+    </button>
+  );
+}
+const MemorizedBtn = React.memo(Btn);
+function App() {
+  const [value, setValue] = React.useState("Save Changes");
+  const changeValue = () => setValue("Revert Changes");
+  return (
+    <div>
+      <MemorizedBtn text={value} onClick={changeValue} />
+      <MemorizedBtn text="Confirm" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+꼭 사용할 필요는 없지만, Component가 1000개라면 사용할 법 합니다. 그리고 React의 동작 과정을 더 이해할 수 있는 기능입니다.
