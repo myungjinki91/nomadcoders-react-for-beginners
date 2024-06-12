@@ -647,3 +647,28 @@ export default Button;
 ```
 
 주의할 점은 파일 이름이 abc.module.css와 같이 .module.css이여야 합니다.
+
+# 6 EFFECTS
+
+## 6.0 Introduction
+
+button을 클릭할 때마다 해당 component는 계속 rerendering합니다. 만약… 첫 rendering때만 실행하고 싶은 코드가 있다면? 만약 API호출을 rerendering할 때마다 한다면? 오우 끔찍합니다.
+
+```
+import { useState } from "react";
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue((prev) => prev + 1);
+  console.log("call an api");
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={onClick}>Click me</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
