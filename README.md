@@ -672,3 +672,32 @@ function App() {
 export default App;
 
 ```
+
+## 6.1 useEffect
+
+`useEffect()`의 존재로 인해서 첫 렌더링때만 실행할 수 있는 코드를 작성할 수 있게 되었습니다.
+
+`console.log()`가 2번 출력되는 이유는 개발모드여서 그렇습니다. production일 경우 두 번 안나옵니다.
+
+```
+import { useState, useEffect } from "react";
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue((prev) => prev + 1);
+  console.log("i run all the time");
+  const iRunOnlyOnce = () => {
+    console.log("i run only once");
+  };
+  useEffect(iRunOnlyOnce, []);
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={onClick}>Click me</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
