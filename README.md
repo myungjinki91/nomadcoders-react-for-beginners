@@ -654,7 +654,7 @@ export default Button;
 
 button을 클릭할 때마다 해당 component는 계속 rerendering합니다. 만약… 첫 rendering때만 실행하고 싶은 코드가 있다면? 만약 API호출을 rerendering할 때마다 한다면? 오우 끔찍합니다.
 
-```
+```jsx
 import { useState } from "react";
 
 function App() {
@@ -679,7 +679,7 @@ export default App;
 
 `console.log()`가 2번 출력되는 이유는 개발모드여서 그렇습니다. production일 경우 두 번 안나옵니다.
 
-```
+```jsx
 import { useState, useEffect } from "react";
 
 function App() {
@@ -706,7 +706,7 @@ export default App;
 
 아래처럼 조건문을 추가할 수도 있습니다.
 
-```
+```jsx
 const [counter, setValue] = useState(0);
 const [keyword, setKeyword] = useState("");
 
@@ -875,7 +875,7 @@ react는 li의 key를 인식합니다.
 
 array.map은 item, index를 사용할 수 있습니다.
 
-```
+```jsx
     <div>
       <h1>My To Dos ({toDos.length})</h1>
       <form onSubmit={onSubmit}>
