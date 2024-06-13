@@ -739,3 +739,85 @@ useEffect(() => {
 useState(): 리액트의 존재 이유, 상태가 변할 때마다 컴포넌트를 다시 실행한다.
 
 useEffect(): 그런데, 모든 상태가 아닌 특정 상태가 변할 때 특정 동작을 하도록 만들 수 있다.
+
+## 6.4 Cleanup
+
+useEffect의 첫번째 인자인 함수, 그 함수의 return을 지정하면 component가 삭제될 때 그 함수가 실행됩니다.
+
+```jsx
+import { useState, useEffect } from "react";
+
+function Hello() {
+  useEffect(() => {
+    console.log("created :)");
+    return () => {
+      console.log("detroyed :(");
+    };
+  }, []);
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowing] = useState(true);
+  const onClick = () => setShowing((prev) => !prev);
+  return (
+    <div>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+아래와 같이 코드를 분리할 수 도 있습니다. 그런데 잘 사용하진 않습니다.
+
+```jsx
+import { useState, useEffect } from "react";
+
+function Hello() {
+  function byFn() {
+    console.log("bye :(");
+  }
+  function hiFn() {
+    console.log("created :)");
+    return byFn;
+  }
+  useEffect(hiFn, []);
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowing] = useState(true);
+  const onClick = () => setShowing((prev) => !prev);
+  return (
+    <div>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+경험에 비춰보면 clean-up은 많이 사용하지 않습니다.
+
+### sugar님의 정리
+
+정리(clean-up)를 이용하는 Effects
+
+위에서 정리(clean-up)가 필요하지 않은 side effect를 보았지만, 정리(clean-up)가 필요한 effect도 있습니다. 외부 데이터에 구독(subscription)을 설정해야 하는 경우를 생각해보겠습니다. 이런 경우에 메모리 누수가 발생하지 않도록 정리(clean-up)하는 것은 매우 중요합니다.
+
+effect에서 함수를 반환하는 이유는 무엇일까요?
+
+이는 effect를 위한 추가적인 정리(clean-up) 메커니즘입니다. 모든 effect는 정리를 위한 함수를 반환할 수 있습니다.
+
+React가 effect를 정리(clean-up)하는 시점은 정확히 언제일까요?
+
+React는 컴포넌트가 마운트 해제되는 때에 정리(clean-up)를 실행합니다. 하지만 위의 예시에서 보았듯이 effect는 한번이 아니라 렌더링이 실행되는 때마다 실행됩니다. React가 다음 차례의 effect를 실행하기 전에 이전의 렌더링에서 파생된 effect 또한 정리하는 이유가 바로 이 때문입니다.
+
+https://ko.reactjs.org/docs/hooks-effect.html#effects-with-cleanup
