@@ -821,3 +821,50 @@ React가 effect를 정리(clean-up)하는 시점은 정확히 언제일까요?
 React는 컴포넌트가 마운트 해제되는 때에 정리(clean-up)를 실행합니다. 하지만 위의 예시에서 보았듯이 effect는 한번이 아니라 렌더링이 실행되는 때마다 실행됩니다. React가 다음 차례의 effect를 실행하기 전에 이전의 렌더링에서 파생된 effect 또한 정리하는 이유가 바로 이 때문입니다.
 
 https://ko.reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+
+# 7 PRACTICE MOVIE APP
+
+## 7.0 To Do List part One
+
+프론트엔드 프로젝트의 가장 기초적인 To-do list
+
+`<form>`, `<input>`, `<button>`은 적응이 안된다.
+
+주의할 점은 `event.preventDefault()`
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]); // [toDo1, toDo2, toDo3, ...
+  const onChange = (event) => {
+    setToDo(event.target.value);
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      return;
+    }
+    setToDos((currentArray) => [...currentArray, toDo]);
+    setToDo("");
+  };
+  return (
+    <div>
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="Write your to do..."
+        />
+        <button>Add</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+```
