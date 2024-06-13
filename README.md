@@ -868,3 +868,30 @@ function App() {
 export default App;
 
 ```
+
+## 7.1 To Do List part Two
+
+react는 li의 key를 인식합니다.
+
+array.map은 item, index를 사용할 수 있습니다.
+
+```
+    <div>
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="Write your to do..."
+        />
+        <button>Add</button>
+      </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+```
