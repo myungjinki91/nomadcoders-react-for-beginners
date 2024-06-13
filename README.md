@@ -701,3 +701,35 @@ function App() {
 export default App;
 
 ```
+
+## 6.2 Deps
+
+아래처럼 조건문을 추가할 수도 있습니다.
+
+```
+const [counter, setValue] = useState(0);
+const [keyword, setKeyword] = useState("");
+
+useEffect(() => {
+  if (keyword !== "" && keyword.length > 5) {
+    console.log("SEARCH FOR", keyword);
+  }
+}, [keyword]);
+```
+
+혹은, counter, keyword 둘 중 아무거나 변화해도 실행되게 할 수도 있습니다.
+
+```jsx
+useEffect(() => {
+  console.log("I run only once");
+}, []);
+useEffect(() => {
+  console.log("I run when 'keyword' changes.");
+}, [keyword]);
+useEffect(() => {
+  console.log("I run when 'counter' changes.");
+}, [counter]);
+useEffect(() => {
+  console.log("I run when keyword & counter changes.");
+}, [counter, keyword]);
+```
