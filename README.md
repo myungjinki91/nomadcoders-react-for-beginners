@@ -733,3 +733,9 @@ useEffect(() => {
   console.log("I run when keyword & counter changes.");
 }, [counter, keyword]);
 ```
+
+## 6.3 Recap
+
+useState(): 리액트의 존재 이유, 상태가 변할 때마다 컴포넌트를 다시 실행한다.
+
+useEffect(): 그런데, 모든 상태가 아닌 특정 상태가 변할 때 특정 동작을 하도록 만들 수 있다.
