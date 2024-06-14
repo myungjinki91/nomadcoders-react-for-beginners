@@ -1250,3 +1250,49 @@ function Detail() {
 export default Detail;
 
 ```
+
+## 7.7 Publishing
+
+gh-pages 라이브러리로 한 번에 GitHub에 배포할 수 있습니다. 주의할 점은, package.json에 “homepage”를 설정해 주어야 합니다.
+
+그리고 “scripts”에 “deploy”와 “predeploy”도 설정해 줍시다.
+
+```bash
+npm i gh-pages
+```
+
+```bash
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "deploy": "gh-pages -d build",
+  "predeploy": "npm run build"
+},
+"homepage": "https://myungjinki91.github.io/nomadcoders-react-for-beginners/"
+```
+
+npm run deploy를 하면 predeploy가 먼저 실행되고 그 다음 deploy를 실행합니다. 그런데 배포를 하면 흰화면만 나올 경우가 있습니다.
+
+basename을 아래와 같이 수정해 주면 해결됩니다.
+
+```jsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+  return (
+    <Router basename={process.env.PUBLIC_URL}>
+      <Routes>
+        <Route path="/movie/:id" element={<Detail />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+```
