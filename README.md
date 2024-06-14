@@ -1105,3 +1105,66 @@ npm i react-router-dom@5.3.0
 ```
 
 router는 URL을 보고 있는 component입니다.
+
+## 7.5 React Router
+
+```jsx
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./routes/Home";
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
+
+```
+
+- BrowserRouter: [http://localhost:3000/movie](http://localhost:3000/movie/#/)/
+- HashRouter: http://localhost:3000/movie/#/
+
+<Switch> Component가 필요한 이유는, URL마다 1개의 Component만 Rendering하고 싶기 때문입니다.
+
+그리고 영화 상세페이지로 가고 싶다면 <a>를 사용해야 한다고 생각했을겁니다. 그렇게 되면 페이지를 Reloading합니다.
+
+그렇게 하지 않고 싶으면 <Link>를 사용하면 됩니다.
+
+```jsx
+import propTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+function Movie({ coverImg, title, summary, genres }) {
+  return (
+    <div>
+      <img src={coverImg} alt={title} />
+      <h2>
+        <Link to="/movie">{title}</Link>
+      </h2>
+      <p>{summary}</p>
+      <ul>
+        {genres.map((g) => (
+          <li key={g}>{g}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+Movie.propTypes = {
+  coverImg: propTypes.string.isRequired,
+  title: propTypes.string.isRequired,
+  summary: propTypes.string.isRequired,
+  genres: propTypes.arrayOf(propTypes.string).isRequired,
+};
+
+export default Movie;
+
+```
