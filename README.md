@@ -1030,3 +1030,78 @@ function App() {
 
 export default App;
 ```
+
+## 7.4 Movie App part Two
+
+파일이 커지니 분리를 해봅시다.
+
+```jsx
+import { useEffect, useState } from "react";
+import Movie from "./Movie";
+
+function App() {
+  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const response = await fetch(
+      "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year"
+    );
+    const json = await response.json();
+    setMovies(json.data.movies);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
+  return (
+    <div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        movies.map((movie) => (
+          <Movie
+            key={movie.id}
+            coverImg={movie.medium_cover_image}
+            title={movie.title}
+            summary={movie.summary}
+            genres={movie.genres}
+          />
+        ))
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+```jsx
+function Movie({ coverImg, title, summary, genres }) {
+  return (
+    <div>
+      <img src={coverImg} alt={title} />
+      <h2>{title}</h2>
+      <p>{summary}</p>
+      <ul>
+        {genres.map((g) => (
+          <li key={g}>{g}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Movie;
+
+```
+
+주의할 점은 ReactJS에서 map을 사용해 component를 생성할 때, key가 꼭 필요합니다.
+
+React router dom을 사용할겁니다. 강의가 2022년에 만들어져서 버전을 지정해줘야 합니다.
+
+```bash
+npm i react-router-dom@5.3.0
+```
+
+router는 URL을 보고 있는 component입니다.
