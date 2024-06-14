@@ -1,4 +1,4 @@
-import { propTypes } from "prop-types";
+import propTypes from "prop-types";
 
 function Movie({ coverImg, title, summary, genres }) {
   return (
