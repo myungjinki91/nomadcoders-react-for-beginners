@@ -1168,3 +1168,85 @@ Movie.propTypes = {
 export default Movie;
 
 ```
+
+## 7.6 Parameters
+
+그러기 위해서는 `<Route path="/movie/:id">`를 사용합시다. `:`가 중요합니다.
+
+```jsx
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/movie/:id">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+        f
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
+
+```
+
+https://yts.mx/api/v2/movie_details.json?movie_id= 사용
+
+순서: <Link> → <Route path=”:id”> → useParams()
+
+문제: 영화 제목을 클릭하면, URL만 변경되고 Detail Component가 렌더링되지 않음.
+
+버전: react-router-dom, 6.23.1
+
+- App.js
+
+```jsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/movie/:id" element={<Detail />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+```
+
+```jsx
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+function Detail() {
+  const { id } = useParams();
+  const getMovie = async () => {
+    const response = await fetch(
+      `https://yts.mx/api/v2/movie_details.json?movie_id=${id}`
+    );
+    const json = await response.json();
+    console.log(json);
+  };
+  useEffect(() => {
+    getMovie();
+  });
+  return <h1>Detail</h1>;
+}
+
+export default Detail;
+
+```
