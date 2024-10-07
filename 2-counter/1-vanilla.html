@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<body>
+  <body>
     <span>Total clicks: 0</span>
     <button id="btn">Click me</button>
-</body>
-<script>
+  </body>
+  <script>
     let counter = 0;
     const button = document.getElementById("btn");
     const span = document.querySelector("span");
     function handleClick() {
-        counter = counter + 1;
-        span.innerText = `Total clicks: ${counter}`;
+      counter = counter + 1;
+      span.innerText = `Total clicks: ${counter}`;
     }
     button.addEventListener("click", handleClick);
-</script>
-
+  </script>
 </html>
+
+<!-- 
+React 이전
+
+1. HTML을 작성
+2. HTML Element를 불러오기
+3. Element에 감지할 Event 등록
+4. Event가 감지되면 DOM 업데이트
+ -->
